@@ -4,12 +4,16 @@ let time = focusTime;
 let timer = null;
 let isRunning = false;
 let isFocus = true;
+let sessionCount = 0; 
+
 
 const  timerDisplay =document.getElementById("timer");
 const startbtn = document.getElementById("start");
 const pausebtn = document.getElementById("pause");
 const resetbtn = document.getElementById("reset");
 const modeDisplay = document.getElementById("mode");
+const alarmSound = new Audio('beep.mp3');
+const sessionCountDisplay = document.getElementById("sessionCount");
 
 function formatTime(seconds){
     const min = Math.floor(seconds/60);
@@ -43,10 +47,16 @@ function resetTimer(){
     updateDisplay();
 }
 function switchMode(){
+    alarmSound.play();
+     if (isFocus === true) {
+    sessionCount++;
+    sessionCountDisplay.textContent = `Focus Sessions Completed: ${sessionCount}`;
+  }
     isFocus = !isFocus;
     time  = isFocus?focusTime:breakTime;
     modeDisplay.textContent = isFocus?"Focus Time":"Break Time";
     updateDisplay();
+    startTimer();
 }
 startbtn.addEventListener("click",startTimer);
 pausebtn.addEventListener("click",pauseTimer);

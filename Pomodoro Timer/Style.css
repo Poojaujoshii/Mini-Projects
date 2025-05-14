@@ -18,7 +18,7 @@ body{
 }.container:hover{
     transform: scale(1.02);
 }
-.timer{
+#timer{
     font-size: 60px;
     margin: 20px 0;
     color: #ff4e50;
